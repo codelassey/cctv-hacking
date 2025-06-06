@@ -30,6 +30,7 @@ I needed a safe, isolated setup with two VMs to simulate a target CCTV system an
    sudo apt install -y software-properties-common
    ```
    This tool helps manage repositories, which I needed for ZoneMinder.
+   ![software_properties](screenshots/two.png)
 
 ## Installing ZoneMinder
 
