@@ -225,9 +225,10 @@ After exploiting these vulnerabilities, I there's the need to secure CCTV system
 3. Network Segmentation.
    The CCTV system should be placed on a separate VLAN or subnet and use iptables to restrict access:
    ```
-   sudo iptables -A INPUT -p tcp --dport 80 -s 192.168.56.102 -j ACCEPT
+   sudo iptables -A INPUT -p tcp --dport 80 -s 192.168.56.109 -j ACCEPT
    sudo iptables -A INPUT -p tcp --dport 80 -j DROP
    ```
+   This rule allows incoming HTTP traffic (port 80) only from the IP address 192.168.56.109 and drops all other incoming HTTP traffic (port 80) that doesn’t match the previous rule.
    This limits exposure, as my Gobuster scan found /zm due to an open network.
 4. Firmware and Software Updates.
    Regularly update ZoneMinder and the OS
