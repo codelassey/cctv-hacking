@@ -14,6 +14,7 @@ This project is journey into setting up a simulated CCTV system using ZoneMinder
   - Network: Host-only network (`192.168.56.0/24`) to keep everything isolated.
 - **Tools Used**: VirtualBox, ZoneMinder, mediamtx, FFmpeg, FFplay, Nmap, Gobuster, Hydra, Burp Suite.
 
+NOTE : RTSP is a protocol for streaming media over a network.
 ---
 
 ## Setting Up the Environment
@@ -156,12 +157,19 @@ ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a l
 
 ![mediamtx2](screenshots/twentyone.png)
 
+![mediamtx3](screenshots/twentytwo.png)
+
 3. I streamed the footage with FFmpeg:
    Initially, I tried a simpler FFmpeg command, but the video lagged. I adjusted it to:
    ```
    ffmpeg -re -stream_loop -1 -i /var/lib/zoneminder/videos/sample2.mp4 -c:v libx264 -preset ultrafast -tune zerolatency -c:a aac -f rtsp rtsp://192.168.56.109:8554/mystream
    ```
-   The -re, -stream_loop -1, and -preset ultrafast options ensured smooth, continuous streaming without lag.
+   This command takes the sample2.mp4 file, encodes it in real-time using the H.264 video codec (libx264) and AAC audio codec, optimizes for low latency and high speed (ultrafast and zerolatency), and streams it continuously as an RTSP feed to rtsp://192.168.56.109:8554/mystream. The -re and -stream_loop -1 options ensure it behaves like a live, uninterrupted CCTV feed, which you used to simulate footage in ZoneMinder.
+
+![streaming_ffmpeg](screenshots/twentythree.png)
+
+![streaming_ffmpeg](screenshots/twentyfour.png)
+
 4. I added a monitor in ZoneMinder named simcamera:
    ```
    Source Type: Remote
@@ -187,6 +195,8 @@ ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a l
    ```
    Result: The video played live, confirming the RTSP setup worked.
    FFplay validated the stream outside ZoneMinder, proving the issue was with ZoneMinder’s interface.
+
+
 5. I added a few users in ZoneMinder under "Options" > "Users" for testing.
 
 ## Scanning the Target
