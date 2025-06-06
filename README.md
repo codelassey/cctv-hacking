@@ -265,16 +265,29 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
 
 ![burp2](screenshots/thirtynine.png)
 
+![burp2](screenshots/fourty.png)
+
 3. I created a Brute-Force attack with Hydra:
+
    - I created a small username list:
 
+![hydra1](screenshots/fourtyone.png)
+
    - Initially, I tried `rockyou.txt`, but it was too slow. I created a smaller password list for the attack:
+
+![hydra2](screenshots/fourtytwo.png)
+
    - Finally, I ran the attack:
    ```
    hydra -L usernames.txt -P passwords.txt 192.168.56.109 http-post-form "/zm/?view=loginQuery=&username=^USER^&password=^PASS^:Invalid username or password" -t 8
    ```
    Result: I got a match! admin/admin, the default credentials.
    You know, Icould have guessed for default credentials and it would have got me in but not only that, I had to simulate the fact that what if default credentials weren't used? That's where the brute-force on the login page with username and password wordlists would still give the attacker some level of access if a match was found.
+
+![hydra3](screenshots/fourtythree.png)
+
+![hydra4](screenshots/fourtyfour.png)
+
 4. I accessed ZoneMinder and viewed the feed:
    - I logged in with `admin/admin` at `http://192.168.56.109/zm`.
    - I saw simcamera capturing live footage. I checked details and found:
