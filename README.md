@@ -249,13 +249,22 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
 
    `/zm` wasn’t listed, so I edited `common.txt` to add zm (for simulation purposes)
 
+![simcamera1](screenshots/thirtysix.png)
+
    I reran Gobuster and found `http://192.168.56.109/zm`.
    This revealed the ZoneMinder directory, a critical step in the attack.
+
+![simcamera1](screenshots/thirtyseven.png)
 
 2. I captured Login Request with Burp Suite:
    I visited `http://192.168.56.109/zm`, entered a random username and password, and intercepted the POST request with Burp Suite.
    The login failed, yes, exactly what I wanted but Burp didn’t capture a "Login failed" message. I used the form’s error message ("Wrong username or password") from the browser.
    This gave me the exact POST structure for Hydra.
+
+![burp1](screenshots/thirtyeight.png)
+
+![burp2](screenshots/thirtynine.png)
+
 3. I created a Brute-Force attack with Hydra:
    - I created a small username list:
 
