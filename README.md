@@ -286,17 +286,24 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
 
 ![hydra3](screenshots/fourtythree.png)
 
+4. I accessed ZoneMinder and viewed the feed:
+
+   - I logged in with `admin/admin` at `http://192.168.56.109/zm`.
+   - I saw simcamera capturing live footage. 
+
 ![hydra4](screenshots/fourtyfour.png)
 
-4. I accessed ZoneMinder and viewed the feed:
-   - I logged in with `admin/admin` at `http://192.168.56.109/zm`.
-   - I saw simcamera capturing live footage. I checked details and found:
+   - I checked details and found:
      ```
      Host: 192.168.56.109
      Port: 8554
      Path: /mystream
      ```
-     I played the stream with:
+
+![hydra5](screenshots/fourtyfive.png)
+
+   - I played the stream with:
+
      ```
      ffplay rtsp://192.168.56.109:8554/mystream
      ```
