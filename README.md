@@ -86,17 +86,20 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    Entered `zmpass` when prompted for password.
    This populated the database with ZoneMinder’s schema.
+
 6. I adjusted permissions to ensure ZoneMinder could read its configuration:
    ```
    sudo chgrp -c www-data /etc/zm/zm.conf
    ```
    Proper permissions are needed for ZoneMinder to function.
+
 7. I enabled CGI and restarted Apache:
    ```
    sudo a2enmod cgi
    sudo systemctl restart apache2
    ```
    Apache needs CGI for ZoneMinder’s web interface.
+
 8. I checked and started the service:
    ```
    sudo systemctl status zoneminder
