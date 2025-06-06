@@ -302,18 +302,34 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
 
 ![hydra5](screenshots/fourtyfive.png)
 
+![hydra6](screenshots/fourtysix.png)
+
    - I played the stream with:
 
      ```
      ffplay rtsp://192.168.56.109:8554/mystream
      ```
      Result: I had live access to the feed!
+
+![ffplay1](screenshots/fourtyseven.png)
+
+![ffplay2](screenshots/fourtyeight.png)
+
+![ffplay3](screenshots/fourtynine.png)
+
+![ffplay4](screenshots/fifty.png)
+
    - This showed how an attacker could view the footage after gaining access.
+
 5. I recorded the feed:
    ```
    ffmpeg -i rtsp://192.168.56.109:8554/mystream -c copy surveillance.mp4
    ```
+
+![ffmpeg](screenshots/fiftyone.png)
+
    - FFmpeg copies the stream without re-encoding, preserving quality and speed and saves it as surveillance.mp4.
+
    - I installed it earlier with:
      ```
      sudo apt install -y ffmpeg
