@@ -93,12 +93,16 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    Proper permissions are needed for ZoneMinder to function.
 
+![](screenshots/ten.png)
+
 7. I enabled CGI and restarted Apache:
    ```
    sudo a2enmod cgi
    sudo systemctl restart apache2
    ```
    Apache needs CGI for ZoneMinder’s web interface.
+
+   ![enabling_services](screenshots/eleven.png)
 
 8. I checked and started the service:
    ```
@@ -107,8 +111,15 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    sudo systemctl start zoneminder
    ```
    This ensured ZoneMinder was running and would start on boot.
+
+   ![starting_service](screenshots/twelve.png)
+
 9. Accessing ZoneMinder:
     I visited `http://192.168.56.109/zm` and logged in authomatically without credentials since authentication wasn’t enabled initially. I then enabled authentication from Zoneminder's options. I explored the interface to get familiar with it. This confirmed ZoneMinder was working.
+
+![accessing_zoneminder](screenshots/thirteen.png)
+![accessing_zoneminder2](screenshots/fourteen.png)
+![accessing_zoneminder3](screenshots/fifteen.png)
 
 ## Simulating CCTV Footage
 ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a live feed. I downloaded a sample MP4 from `sample-videos.com` to act as my CCTV footage, as it provided a realistic video to stream.
