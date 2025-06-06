@@ -226,9 +226,14 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
    I noticed port 8554 (RTSP) wasn’t open, which surprised me since mediamtx was running. I checked but wasn't a firewall issue.
    I focused on port 80, which was open alongside other ports.
    Nmap helped me find a web server, a potential entry point.
+
+![nmap_scan](screenshots/thirtythree.png)
+
 2. I checked the Web Server:
    I visited `http://192.168.56.109` in Firefox and saw the Apache2 default page.
    This confirmed port 80 was active but didn’t reveal ZoneMinder directly.
+
+![apache_web](screenshots/thirtyfour.png)
 
 ## Exploitation
    I exploited the system to see how an attacker could gain access, using the tools and techniques I learned.
@@ -239,10 +244,14 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
    ```
    gobuster dir -u http://192.168.56.109 -w /usr/share/wordlists/dirb/common.txt
    ```
+
+![gobuster1](screenshots/thirtyfive.png)
+
    `/zm` wasn’t listed, so I edited `common.txt` to add zm (for simulation purposes)
 
    I reran Gobuster and found `http://192.168.56.109/zm`.
    This revealed the ZoneMinder directory, a critical step in the attack.
+
 2. I captured Login Request with Burp Suite:
    I visited `http://192.168.56.109/zm`, entered a random username and password, and intercepted the POST request with Burp Suite.
    The login failed, yes, exactly what I wanted but Burp didn’t capture a "Login failed" message. I used the form’s error message ("Wrong username or password") from the browser.
