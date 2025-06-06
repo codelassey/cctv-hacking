@@ -25,14 +25,15 @@ I needed a safe, isolated setup with two VMs to simulate a target CCTV system an
      ```bash
      sudo apt update && sudo apt upgrade -y
      ```
-     ![upgrade](screenshots/one.png)
+![upgrade](screenshots/one.png)
+
 2. I ran:
    ```
    sudo apt install -y software-properties-common
    ```
    This tool helps manage repositories, which I needed for ZoneMinder.
 
-   ![software_properties](screenshots/two.png)
+![software_properties](screenshots/two.png)
 
 ## Installing ZoneMinder
 
@@ -43,7 +44,7 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    sudo apt install -y apache2 mariadb-server
    ```
-   ![apache_mariadb](screenshots/five.png)
+![apache_mariadb](screenshots/five.png)
 
    These are required for ZoneMinder’s web interface and data storage.
 2. Since MariaDB was disabled, I started it manually:
@@ -52,7 +53,7 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    I needed the database running to create ZoneMinder’s database.
 
-   ![start_mariadb](screenshots/six.png)
+![start_mariadb](screenshots/six.png)
 
 3. I entered the MariaDB shell to create Zoneminder Database:
    ```
@@ -70,7 +71,7 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    This set up the database for ZoneMinder to store its data.
 
-   ![set_database](screenshots/seven.png)
+![set_database](screenshots/seven.png)
 
 4. I installed Zoneminder:
    ```
@@ -78,7 +79,7 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    This added ZoneMinder to my system.
 
-   ![install_zoneminder](screenshots/eight.png)
+![install_zoneminder](screenshots/eight.png)
 
 5. I configured the database:
    ```
@@ -102,7 +103,7 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    Apache needs CGI for ZoneMinder’s web interface.
 
-   ![enabling_services](screenshots/eleven.png)
+![enabling_services](screenshots/eleven.png)
 
 8. I checked and started the service:
    ```
@@ -112,14 +113,20 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    This ensured ZoneMinder was running and would start on boot.
 
-   ![starting_service](screenshots/twelve.png)
+![starting_service](screenshots/twelve.png)
 
 9. Accessing ZoneMinder:
     I visited `http://192.168.56.109/zm` and logged in authomatically without credentials since authentication wasn’t enabled initially. I then enabled authentication from Zoneminder's options. I explored the interface to get familiar with it. This confirmed ZoneMinder was working.
 
 ![accessing_zoneminder](screenshots/thirteen.png)
+
 ![accessing_zoneminder2](screenshots/fourteen.png)
+
 ![accessing_zoneminder3](screenshots/fifteen.png)
+
+![accessing_zoneminder4](screenshots/sixteen.png)
+
+![accessing_zoneminder5](screenshots/seventeen.png)
 
 ## Simulating CCTV Footage
 ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a live feed. I downloaded a sample MP4 from `sample-videos.com` to act as my CCTV footage, as it provided a realistic video to stream.
@@ -132,6 +139,11 @@ ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a l
    sudo chmod 644 /var/lib/zoneminder/videos/sample2.mp4
    ```
    This video became my simulated live feed, and proper permissions ensured ZoneMinder could access it.
+
+![sample_vid](screenshots/eighteen.png)
+
+![sample_vid2](screenshots/nineteen.png)
+
 2. I downloaded and set up mediamtx (RTSP Server) from Github:
    ```
    wget https://github.com/bluenviron/mediamtx/releases/download/v1.12.3/mediamtx_v1.12.3_linux_amd64.tar.gz
@@ -139,6 +151,11 @@ ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a l
    ./mediamtx
    ```
    Mediamtx streams the video over RTSP, which ZoneMinder can monitor, simulating a live camera feed.
+
+![mediamtx1](screenshots/twenty.png)
+
+![mediamtx2](screenshots/twentyone.png)
+
 3. I streamed the footage with FFmpeg:
    Initially, I tried a simpler FFmpeg command, but the video lagged. I adjusted it to:
    ```
