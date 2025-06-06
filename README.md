@@ -196,8 +196,23 @@ ZoneMinder doesn’t natively play static MP4 files, so I needed to simulate a l
    Result: The video played live, confirming the RTSP setup worked.
    FFplay validated the stream outside ZoneMinder, proving the issue was with ZoneMinder’s interface.
 
+![simcamera1](screenshots/twentyfive.png)
+
+![simcamera2](screenshots/twentysix.png)
+
+![simcamera3](screenshots/twentyseven.png)
+
+![simcamera4](screenshots/twentyeight.png)
+
+![simcamera5](screenshots/twentynine.png)
+
+![simcamera6](screenshots/thirty.png)
 
 5. I added a few users in ZoneMinder under "Options" > "Users" for testing.
+
+![user1](screenshots/thirtyone.png)
+
+![user2](screenshots/thirtytwo.png)
 
 ## Scanning the Target
 Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open ports and services on the target VM to plan my attack, simulating an attacker’s reconnaissance phase.
@@ -267,7 +282,7 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
      ```
    - I played surveillance.mp4 and confirmed the video and sound were clear.
    - This simulated an attacker capturing sensitive footage, highlighting the risk.
-   - 
+   
 ## Mitigation Recommendations
 After exploiting these vulnerabilities, I there's the need to secure CCTV systems. Here are my recommendations based on my findings.
 
