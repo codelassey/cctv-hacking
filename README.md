@@ -335,6 +335,13 @@ Now, with Zoneminder set up on the 'supposed' target, I wanted to identify open 
      sudo apt install -y ffmpeg
      ```
    - I played surveillance.mp4 and confirmed the video and sound were clear.
+
+![surveillance1](screenshots/fiftythree.png)
+
+![surveillance2](screenshots/fiftyfour.png)
+
+![surveillance3](screenshots/fiftyfive.png)
+
    - This simulated an attacker capturing sensitive footage, highlighting the risk.
    
 ## Mitigation Recommendations
@@ -343,8 +350,10 @@ After exploiting these vulnerabilities, I there's the need to secure CCTV system
 1. Change Default Credentials.
    I used the default admin/admin credentials to log in. Strong credentials that can't be easily guessed must be used.
    Default credentials are an easy target for brute-force attacks like mine.
+
 2. Use Multi-Factor Authentication.
    Users that have access to the cctv system must be access controlled using MFA. This would serve as a barrier even if a user's password is cracked.
+
 3. Network Segmentation.
    The CCTV system should be placed on a separate VLAN or subnet and use iptables to restrict access:
    ```
@@ -353,12 +362,14 @@ After exploiting these vulnerabilities, I there's the need to secure CCTV system
    ```
    This rule allows incoming HTTP traffic (port 80) only from the IP address 192.168.56.109 and drops all other incoming HTTP traffic (port 80) that doesn’t match the previous rule.
    This limits exposure, as my Gobuster scan found /zm due to an open network.
+
 4. Firmware and Software Updates.
    Regularly update ZoneMinder and the OS
    ```
    sudo apt update && sudo apt upgrade -y
    ```
    Updates could fix vulnerabilities that allowed my exploitation.
+
 5. Secure RTSP Streams.
    - I noticed port 8554 wasn’t detected by Nmap, but the stream was accessible. Authentication must be added to the RTSP server 'mediamtx' by editing mediamtx.yml:
      ```
@@ -370,8 +381,10 @@ After exploiting these vulnerabilities, I there's the need to secure CCTV system
    - Restart mediamtx and test.
    - Unauthenticated RTSP streams allowed me to view and record the feed.
      Note that there are much more tweaks that can be made in the .yml file to further restrict access.
+
 6. Enable HTTPS.
 Secure Apache with HTTPS. HTTPS would encrypt login credentials and stream data.
+
 7. Monitor Logs.
    Check ZoneMinder logs for suspicious activity:
    ```
