@@ -31,6 +31,7 @@ I needed a safe, isolated setup with two VMs to simulate a target CCTV system an
    sudo apt install -y software-properties-common
    ```
    This tool helps manage repositories, which I needed for ZoneMinder.
+
    ![software_properties](screenshots/two.png)
 
 ## Installing ZoneMinder
@@ -42,12 +43,16 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    ```
    sudo apt install -y apache2 mariadb-server
    ```
+   ![apache_mariadb](screenshots/five.png)
+
    These are required for ZoneMinder’s web interface and data storage.
 2. Since MariaDB was disabled, I started it manually:
    ```
    sudo systemctl start mariadb
    ```
    I needed the database running to create ZoneMinder’s database.
+
+   ![start_mariadb](screenshots/six.png)
 
 3. I entered the MariaDB shell to create Zoneminder Database:
    ```
@@ -64,12 +69,18 @@ I chose ZoneMinder as my CCTV software because it’s open-source and widely use
    exit
    ```
    This set up the database for ZoneMinder to store its data.
+
+   ![set_database](screenshots/seven.png)
+
 4. I installed Zoneminder:
    ```
    sudo apt install -y zoneminder
    ```
    This added ZoneMinder to my system.
-5. Iconfigured the database:
+
+   ![install_zoneminder](screenshots/eight.png)
+
+5. I configured the database:
    ```
    mariadb -u zmuser -p zm < /usr/share/zoneminder/db/zm_create.sql
    ```
