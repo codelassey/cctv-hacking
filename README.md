@@ -25,6 +25,7 @@ I needed a safe, isolated setup with two VMs to simulate a target CCTV system an
      ```bash
      sudo apt update && sudo apt upgrade -y
      ```
+     ![upgrade](screenshots/one.png)
 2. I ran:
    ```
    sudo apt install -y software-properties-common
